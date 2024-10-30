@@ -10,7 +10,7 @@ function App() {
   const [results, setResults] = useState([
     { id: 1, testName: "Hemoglobina", value: 13.5, unit: "g/dL", normalRange: "12-16 g/dL", date: "2023-09-10", notes: "Dentro del rango normal" },
     { id: 2, testName: "Glucosa", value: 92, unit: "mg/dL", normalRange: "70-99 mg/dL", date: "2023-09-10", notes: "" },
-    // Otros resultados...
+    // Otros resultados iniciales...
   ]);
 
   const [selectedTest, setSelectedTest] = useState(null);
@@ -21,7 +21,10 @@ function App() {
     setResults((prevResults) => [...prevResults, newTest]);
   };
 
+  // Filtrar los resultados de acuerdo al tipo de análisis seleccionado
   const filteredResults = filter === "All" ? results : results.filter(result => result.testName === filter);
+
+  // Crear opciones de tipo de análisis únicas para el selector
   const testTypes = ["All", ...new Set(results.map(result => result.testName))];
 
   return (

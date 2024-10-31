@@ -3,50 +3,50 @@
 function isOutOfRange(value, parameter) {
   switch (parameter) {
     case "totalCholesterol":
-      return value > 200;
+      return value > 200 ? "warning" : "normal";
     case "hdlCholesterol":
-      return value < 45 ? "Riesgo elevado" : value <= 65 ? "Riesgo moderado" : "Sin riesgo";
+      return value < 45 ? "warning" : "normal";
     case "ldlCholesterol":
-      return value > 190 ? "Riesgo" : "Normalidad";
+      return value > 190 ? "warning" : "normal";
     case "triglycerides":
-      return value >= 150 ? "Riesgo" : "Normal";
+      return value >= 150 ? "warning" : "normal";
     default:
-      return false;
+      return "";
   }
 }
 
 function CholesterolResultsTable({ results }) {
   return (
-    <table>
+    <table className="table">
       <thead>
         <tr>
-          <th>Fecha</th>
-          <th>Colesterol Total</th>
-          <th>Colesterol HDL</th>
-          <th>Colesterol LDL</th>
-          <th>Triglicéridos</th>
-          <th>VLDL</th>
-          <th>Notas</th>
+          <th className="table-header table-header-cell">Fecha</th>
+          <th className="table-header table-header-cell">Colesterol Total</th>
+          <th className="table-header table-header-cell">Colesterol HDL</th>
+          <th className="table-header table-header-cell">Colesterol LDL</th>
+          <th className="table-header table-header-cell">Triglicéridos</th>
+          <th className="table-header table-header-cell">Colesterol VLDL</th>
+          <th className="table-header table-header-cell">Notas</th>
         </tr>
       </thead>
       <tbody>
         {results.map((result) => (
           <tr key={result.id}>
-            <td>{result.date}</td>
-            <td style={{ color: result.totalCholesterol > 200 ? "red" : "black" }}>
+            <td className="table-cell">{result.date}</td>
+            <td className={`table-cell ${isOutOfRange(result.totalCholesterol, "totalCholesterol")}`}>
               {result.totalCholesterol} mg/dL
             </td>
-            <td style={{ color: isOutOfRange(result.hdlCholesterol, "hdlCholesterol") === "Riesgo elevado" ? "red" : "black" }}>
-              {result.hdlCholesterol} mg/dL ({isOutOfRange(result.hdlCholesterol, "hdlCholesterol")})
+            <td className={`table-cell ${isOutOfRange(result.hdlCholesterol, "hdlCholesterol")}`}>
+              {result.hdlCholesterol} mg/dL
             </td>
-            <td style={{ color: isOutOfRange(result.ldlCholesterol, "ldlCholesterol") === "Riesgo" ? "red" : "black" }}>
-              {result.ldlCholesterol} mg/dL ({isOutOfRange(result.ldlCholesterol, "ldlCholesterol")})
+            <td className={`table-cell ${isOutOfRange(result.ldlCholesterol, "ldlCholesterol")}`}>
+              {result.ldlCholesterol} mg/dL
             </td>
-            <td style={{ color: result.triglycerides >= 150 ? "red" : "black" }}>
-              {result.triglycerides} mg/dL ({isOutOfRange(result.triglycerides, "triglycerides")})
+            <td className={`table-cell ${isOutOfRange(result.triglycerides, "triglycerides")}`}>
+              {result.triglycerides} mg/dL
             </td>
-            <td>{result.vldlCholesterol} mg/dL</td>
-            <td>{result.notes}</td>
+            <td className="table-cell">{result.vldlCholesterol} mg/dL</td>
+            <td className="table-cell">{result.notes}</td>
           </tr>
         ))}
       </tbody>

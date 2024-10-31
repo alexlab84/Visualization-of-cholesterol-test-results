@@ -12,9 +12,7 @@ function CholesterolForm({ onAddTest }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const vldlCholesterol = triglycerides ? triglycerides / 5 : 0;
-
     const newTest = {
       id: Date.now(),
       totalCholesterol: parseFloat(totalCholesterol),
@@ -25,9 +23,7 @@ function CholesterolForm({ onAddTest }) {
       date,
       notes,
     };
-
     onAddTest(newTest);
-
     setTotalCholesterol("");
     setHdlCholesterol("");
     setLdlCholesterol("");
@@ -37,70 +33,31 @@ function CholesterolForm({ onAddTest }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Ingresar Resultados de Colesterol</h3>
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <h3 className="form-title">Ingresar Resultados de Colesterol</h3>
 
-      <label>
-        Colesterol Total (mg/dL):
-        <input
-          type="number"
-          value={totalCholesterol}
-          onChange={(e) => setTotalCholesterol(e.target.value)}
-          required
-        />
-      </label>
+        <label className="form-label">Colesterol Total (mg/dL):</label>
+        <input type="number" className="form-input" value={totalCholesterol} onChange={(e) => setTotalCholesterol(e.target.value)} required />
 
-      <label>
-        Colesterol HDL (mg/dL):
-        <input
-          type="number"
-          value={hdlCholesterol}
-          onChange={(e) => setHdlCholesterol(e.target.value)}
-          required
-        />
-      </label>
+        <label className="form-label">Colesterol HDL (mg/dL):</label>
+        <input type="number" className="form-input" value={hdlCholesterol} onChange={(e) => setHdlCholesterol(e.target.value)} required />
 
-      <label>
-        Colesterol LDL (mg/dL):
-        <input
-          type="number"
-          value={ldlCholesterol}
-          onChange={(e) => setLdlCholesterol(e.target.value)}
-          required
-        />
-      </label>
+        <label className="form-label">Colesterol LDL (mg/dL):</label>
+        <input type="number" className="form-input" value={ldlCholesterol} onChange={(e) => setLdlCholesterol(e.target.value)} required />
 
-      <label>
-        Triglicéridos (mg/dL):
-        <input
-          type="number"
-          value={triglycerides}
-          onChange={(e) => setTriglycerides(e.target.value)}
-          required
-        />
-      </label>
+        <label className="form-label">Triglicéridos (mg/dL):</label>
+        <input type="number" className="form-input" value={triglycerides} onChange={(e) => setTriglycerides(e.target.value)} required />
 
-      <label>
-        Fecha:
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          required
-        />
-      </label>
+        <label className="form-label">Fecha:</label>
+        <input type="date" className="form-input" value={date} onChange={(e) => setDate(e.target.value)} required />
 
-      <label>
-        Notas:
-        <textarea
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          placeholder="Notas adicionales"
-        />
-      </label>
+        <label className="form-label">Notas:</label>
+        <textarea className="form-textarea" value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Notas adicionales" />
 
-      <button type="submit">Añadir Análisis</button>
-    </form>
+        <button type="submit" className="form-button">Añadir Análisis</button>
+      </form>
+    </div>
   );
 }
 

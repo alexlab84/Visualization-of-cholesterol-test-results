@@ -1,9 +1,9 @@
-
-
 import { useState } from "react";
 import CholesterolResultsTable from "./CholesterolResultsTable";
 import CholesterolChart from "./CholesterolChart";
 import CholesterolForm from "./CholesterolForm";
+
+import '../styles/App.scss'
 
 function App() {
   const [results, setResults] = useState([]);
@@ -13,12 +13,11 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Resultados de Pruebas de Colesterol</h1>
-      
       <CholesterolForm onAddTest={addTest} />
       <CholesterolResultsTable results={results} />
-      <CholesterolChart results={results} /> {/* Agregamos el gráfico aquí */}
+      <CholesterolChart results={results} />
     </div>
   );
 }

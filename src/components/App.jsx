@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Header from './Header';
+import Footer from "./Footer";
 import CholesterolResultsTable from "./CholesterolResultsTable";
 import CholesterolChart from "./CholesterolChart";
 import CholesterolForm from "./CholesterolForm";
@@ -13,11 +15,14 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <h1>Resultados de Pruebas de Colesterol</h1>
-      <CholesterolForm onAddTest={addTest} />
-      <CholesterolResultsTable results={results} />
-      <CholesterolChart results={results} />
+    <div>
+      <Header />
+      <div className="container">
+        <CholesterolForm onAddTest={addTest} />
+        <CholesterolResultsTable results={results} />
+        <CholesterolChart results={results} />
+      </div>
+      <Footer />
     </div>
   );
 }

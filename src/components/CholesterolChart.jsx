@@ -6,9 +6,9 @@ function CholesterolChart({ results }) {
   const sortedResults = [...results].sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
-    <div style={{ width: "100%", height: 400 }}>
-      <h3>Evolución de los Niveles de Colesterol</h3>
-      <ResponsiveContainer>
+    <div className="chart"> {/* Aquí aplicamos la clase para estilos */}
+      <h3 className="form-title">Evolución de los Niveles de Colesterol</h3>
+      <ResponsiveContainer width="100%" height={400}> {/* Aseguramos que el contenedor sea responsive */}
         <LineChart data={sortedResults} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" tickFormatter={(date) => new Date(date).toLocaleDateString()} />

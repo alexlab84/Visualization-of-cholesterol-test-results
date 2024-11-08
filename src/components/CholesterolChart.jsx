@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from "recharts";
 
 function CholesterolChart({ results }) {
@@ -26,5 +26,17 @@ function CholesterolChart({ results }) {
     </div>
   );
 }
+
+CholesterolChart.propTypes = {
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.string.isRequired,
+      totalCholesterol: PropTypes.number.isRequired,
+      hdlCholesterol: PropTypes.number.isRequired,
+      ldlCholesterol: PropTypes.number.isRequired,
+      triglycerides: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
 
 export default CholesterolChart;

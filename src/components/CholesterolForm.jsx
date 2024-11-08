@@ -1,5 +1,5 @@
 
-
+import PropTypes from 'prop-types';
 import { useState } from "react";
 
 function CholesterolForm({ onAddTest }) {
@@ -60,5 +60,10 @@ function CholesterolForm({ onAddTest }) {
     </div>
   );
 }
+
+CholesterolForm.propTypes = {
+  onAddTest: PropTypes.func.isRequired,
+};
+
 
 export default CholesterolForm;

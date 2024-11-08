@@ -1,114 +1,92 @@
 @import './core/reset';
 @import './core/variables';
 
+/* Reset global */
+:root {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
 /* Contenedor principal */
 .container {
-  max-width: 100%;
+  width: 100%;
+  max-width: 900px;
   padding: 10px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-    .container {
-      max-width: 90%; /* Reduce el ancho en pantallas más pequeñas */
-      padding: 15px; /* Aumenta el padding en pantallas más pequeñas */
-    }
-    
-    .header, .footer {
-      max-width: 90%; /* Ancho máximo igual al contenedor principal */
-      margin: 0 auto; /* Centrar el header y el footer */
-      padding: 15px; /* Mantener el padding igual al contenedor principal */
-    }
-  }
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 800px; /* Establece un ancho máximo en pantallas grandes */
-    width: 100%;
-    margin: 20px auto; /* Centrar el contenedor */
-    padding: 20px; /* Aumenta el padding en pantallas grandes */
-  }
-}
-
-/* Estilos para Header y Footer */
-.header, .footer {
+/* Header y Footer */
+.header,
+.footer {
+  width: 100%;
   background-color: #4CAF50;
   color: white;
   text-align: center;
-  padding: 15px 0;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-.header h1, .footer p {
+.header h1,
+.footer p {
   margin: 0;
-}
-
-/* Título principal */
-.ppalTitle {
-  color: #333;
-  text-align: center;
 }
 
 /* Formulario */
 .form-container {
+  width: 100%;
   margin-bottom: 20px;
 }
 
-.form-title {
-  font-size: 1.5rem; /* Ajustar tamaño para mejor visibilidad */
-  color: #333;
-  margin-bottom: 20px; /* Reduce el espacio entre el título y el formulario */
-}
-
-.form-label {
-  color: #333;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.form-input, .form-textarea, .form-button {
+.form-input,
+.form-textarea,
+.form-button {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  width: 100%; /* Asegúrate de que ocupen el 100% del ancho del contenedor */
+  width: 100%;
   margin-bottom: 15px;
-  box-sizing: border-box; /* Incluye el padding y border en el ancho total */
-}
-
-.form-textarea {
-  resize: vertical; /* Permite que se redimensione verticalmente */
+  box-sizing: border-box;
 }
 
 .form-button {
   background-color: #4CAF50;
   color: white;
   cursor: pointer;
-  text-align: center;
 }
 
 .form-button:hover {
-  background-color: #45a049; /* Color más oscuro al pasar el ratón */
+  background-color: #45a049;
 }
 
-/* Tabla */
+/* Tabla de resultados */
+.table-wrapper {
+  width: 100%;
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
 
-.table-header {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.table-cell, .table-header-cell {
+.table-header-cell,
+.table-cell {
   padding: 12px;
   text-align: center;
   border-bottom: 1px solid #ddd;
+  word-break: break-word;
 }
 
+/* Estilo para celdas de advertencia */
 .table-cell.warning {
   color: red;
   font-weight: bold;
@@ -118,57 +96,203 @@
   color: green;
 }
 
-.chart {
-  margin-top: 20px; /* Espacio superior para separar del contenido anterior */
-  margin-bottom: 20px; /* Espacio inferior para separar del footer */
-}
+/* Estilos para móvil (max-width: 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
 
-.table-row {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-.table-header-cell, .table-cell {
-  text-align: left;
-  padding: 8px;
-  border-bottom: none;
-}
-
-@media (max-width: 480px) {
-  /* Cambiar la tabla a un diseño tipo "card" en pantallas pequeñas */
   .table {
     display: block;
-    width: 100%;
+  }
+
+  .table-header {
+    display: none;
   }
 
   .table-row {
     display: flex;
     flex-direction: column;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
     margin-bottom: 10px;
-    padding: 10px;
-    background-color: #fff; /* Color de fondo para las filas */
-  }
-
-  .table-header {
-    display: none; /* Ocultar encabezado de tabla */
+    background-color: #fff;
   }
 
   .table-cell {
     display: flex;
     justify-content: space-between;
     padding: 8px 0;
-    border-bottom: none;
   }
 
-  /* Agregar etiquetas a cada celda para mejorar la claridad */
   .table-cell::before {
     content: attr(data-label);
     font-weight: bold;
     color: #333;
+  }
+
+  .chart {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Estilos para tablet (768px - 1200px) */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .container {
+    max-width: 700px;
+  }
+
+  .header,
+  .footer {
+    max-width: 700px;
+  }
+}
+
+/* Estilos para desktop (min-width: 1200px) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 900px;
+  }
+
+  .header,
+  .footer {
+    max-width: 900px;
+  }
+}
+
+/* Gráfica */
+.chart {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+}
+/* Estilos para tablet (768px - 1200px) */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .container {
+    max-width: 700px;
+  }
+
+  .header,
+  .footer {
+    max-width: 700px;
+  }
+
+  /* Estilo para las filas de la tabla en tablet */
+  .table-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .table-row {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    width: calc(50% - 10px); /* Dos columnas por fila */
+    box-sizing: border-box;
+  }
+
+  .table-cell {
+    padding: 8px 0;
+    text-align: left;
+  }
+
+  .table-cell::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #333;
+    flex-basis: 50%;
+  }
+}
+/* Estilos para tablet (768px - 1200px) */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .container {
+    max-width: 700px;
+  }
+
+  .header,
+  .footer {
+    max-width: 700px;
+  }
+
+  /* Estilo de cajitas en tablet */
+  .table-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .table-row {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    width: calc(50% - 10px); /* Dos columnas por fila */
+    box-sizing: border-box;
+  }
+
+  .table-cell {
+    padding: 8px 0;
+    text-align: left;
+  }
+
+  .table-cell::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #333;
+    flex-basis: 50%;
+  }
+}
+
+/* Estilos para desktop (min-width: 1200px) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 900px;
+  }
+
+  .header,
+  .footer {
+    max-width: 900px;
+  }
+
+  /* Estilo de cajitas en desktop */
+  .table-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .table-row {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    width: calc(33.33% - 20px); /* Tres columnas por fila */
+    box-sizing: border-box;
+  }
+
+  .table-cell {
+    padding: 10px 0;
+    text-align: left;
+  }
+
+  .table-cell::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #333;
+    flex-basis: 50%;
   }
 }

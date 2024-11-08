@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 function isOutOfRange(value, parameter) {
   switch (parameter) {
@@ -17,41 +17,45 @@ function isOutOfRange(value, parameter) {
 
 function CholesterolResultsTable({ results }) {
   return (
-    <table className="table">
-      <thead>
-        <tr className="table-header">
-          <th className="table-header-cell">Fecha</th>
-          <th className="table-header-cell">Colesterol Total</th>
-          <th className="table-header-cell">Colesterol HDL</th>
-          <th className="table-header-cell">Colesterol LDL</th>
-          <th className="table-header-cell">Triglicéridos</th>
-          <th className="table-header-cell">Colesterol VLDL</th>
-          <th className="table-header-cell">Notas</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div className="cholesterol-results-table">
+      <div className="table-wrapper">
         {results.map((result) => (
-          <tr key={result.id} className="table-row">
-            <td className="table-cell" data-label="Fecha">{result.date}</td>
-            <td className={`table-cell ${isOutOfRange(result.totalCholesterol, "totalCholesterol")}`} data-label="Colesterol Total">
+          <div key={result.id} className="table-row">
+            <div className="table-cell" data-label="Fecha">{result.date}</div>
+            <div className={`table-cell ${isOutOfRange(result.totalCholesterol, "totalCholesterol")}`} data-label="Colesterol Total">
               {result.totalCholesterol} mg/dL
-            </td>
-            <td className={`table-cell ${isOutOfRange(result.hdlCholesterol, "hdlCholesterol")}`} data-label="Colesterol HDL">
+            </div>
+            <div className={`table-cell ${isOutOfRange(result.hdlCholesterol, "hdlCholesterol")}`} data-label="Colesterol HDL">
               {result.hdlCholesterol} mg/dL
-            </td>
-            <td className={`table-cell ${isOutOfRange(result.ldlCholesterol, "ldlCholesterol")}`} data-label="Colesterol LDL">
+            </div>
+            <div className={`table-cell ${isOutOfRange(result.ldlCholesterol, "ldlCholesterol")}`} data-label="Colesterol LDL">
               {result.ldlCholesterol} mg/dL
-            </td>
-            <td className={`table-cell ${isOutOfRange(result.triglycerides, "triglycerides")}`} data-label="Triglicéridos">
+            </div>
+            <div className={`table-cell ${isOutOfRange(result.triglycerides, "triglycerides")}`} data-label="Triglicéridos">
               {result.triglycerides} mg/dL
-            </td>
-            <td className="table-cell" data-label="Colesterol VLDL">{result.vldlCholesterol} mg/dL</td>
-            <td className="table-cell" data-label="Notas">{result.notes}</td>
-          </tr>
+            </div>
+            <div className="table-cell" data-label="Colesterol VLDL">{result.vldlCholesterol} mg/dL</div>
+            <div className="table-cell" data-label="Notas">{result.notes}</div>
+          </div>
         ))}
-      </tbody>
-    </table>
+      </div>
+    </div>
   );
 }
+
+CholesterolResultsTable.propTypes = {
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      totalCholesterol: PropTypes.number.isRequired,
+      hdlCholesterol: PropTypes.number.isRequired,
+      ldlCholesterol: PropTypes.number.isRequired,
+      triglycerides: PropTypes.number.isRequired,
+      vldlCholesterol: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      notes: PropTypes.string,
+    })
+  ).isRequired,
+};
 
 export default CholesterolResultsTable;
